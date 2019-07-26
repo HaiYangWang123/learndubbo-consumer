@@ -10,9 +10,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class LearndubboConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LearndubboConsumerApplication.class, args);
-        System.out.println("server start");
+        /*SpringApplication.run(LearndubboConsumerApplication.class, args);
+        System.out.println("server start");*/
 
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-consumer.xml");
+        context.start();
+        IDemoService demoService = (IDemoService) context.getBean("demoService");
+        String hello = demoService.sayHello();
+        System.out.println(hello);
     }
 
 }
